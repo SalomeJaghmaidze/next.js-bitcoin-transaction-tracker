@@ -1,118 +1,162 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import React, { useState, useEffect } from "react";
+import Head from "next/head";
+import Modal from "../components/modals/Modal";
 
-const inter = Inter({ subsets: ['latin'] })
-
-export default function Home() {
-  return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+interface Notification {
+  message: string;
+  id: number;
 }
+
+interface Transaction {
+  message: string;
+  id: number;
+}
+
+const Home: React.FC = () => {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [ws, setWs] = useState<WebSocket | null>(null);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [selectedTransaction, setSelectedTransaction] =
+    useState<Transaction | null>(null);
+  const [transactionDetails, setTransactionDetails] = useState<any>(null);
+
+  const playSound = () => {
+    const audio = new Audio(
+      "https://localhost.sharedwithexpose.com/notification.mp3"
+    );
+    console.log(process.env.PUBLIC_URL);
+    audio.play();
+  };
+
+  useEffect(() => {
+    const websocket = new WebSocket("wss://ws.blockchain.info/inv");
+
+    websocket.onopen = () => {
+      console.log("Connected to WebSocket server.");
+    };
+
+    websocket.onmessage = (event) => {
+      const transactionData = JSON.parse(event.data);
+      if (transactionData.op === "utx") {
+        const txHash = transactionData.x.hash;
+        setNotifications([
+          { message: `New transaction: ${txHash}`, id: Date.now() },
+        ]);
+        setTransactions((prevTransactions) => {
+          const newTransaction = {
+            message: `New transaction: ${txHash}`,
+            id: Date.now(),
+          };
+          const updatedTransactions = [
+            newTransaction,
+            ...prevTransactions,
+          ].slice(0, 20);
+          return updatedTransactions;
+        });
+      }
+    };
+
+    websocket.onerror = (error) => {
+      console.log("WebSocket error: ", error);
+    };
+
+    websocket.onclose = () => {
+      console.log("Disconnected from WebSocket server.");
+    };
+
+    setWs(websocket);
+
+    return () => {
+      websocket.close();
+    };
+  }, []);
+
+  const subscribeToNewTransactions = () => {
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify({ op: "unconfirmed_sub" }));
+    }
+  };
+  const fetchTransactionDetails = async (txHash: string) => {
+    try {
+      const response = await fetch(
+        `https://api.blockcypher.com/v1/btc/main/txs/${txHash}`
+      );
+      const data = await response.json();
+      setTransactionDetails(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Failed to fetch transaction details:", error);
+    }
+  };
+
+  const handleTransactionClick = (transaction: Transaction) => {
+    setSelectedTransaction(transaction);
+    fetchTransactionDetails(transaction.message.split(" ")[2]);
+  };
+
+  const closeModal = () => {
+    setSelectedTransaction(null);
+    setTransactionDetails(null);
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <Head>
+        <title>WebSocket Blockchain Transactions</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className="p-6 mx-auto max-w-7xl">
+        <h1 className="text-3xl font-bold">
+          WebSocket Blockchain Transactions
+        </h1>
+        {notifications.map((notification) => (
+          <div
+            key={notification.id}
+            className="p-3 mt-4 bg-green-100 rounded-md"
+          >
+            {notification.message}
+          </div>
+        ))}
+        <div className="mt-6">
+          <button
+            onClick={subscribeToNewTransactions}
+            className="px-4 py-2 text-white bg-blue-600 rounded-md"
+          >
+            Subscribe to New Transactions
+          </button>
+        </div>
+        <div className="mt-8 space-y-4">
+          {transactions.map((transaction, index) => (
+            <div
+              key={index}
+              className="p-3 bg-white rounded-md shadow-md cursor-pointer"
+              onClick={() => handleTransactionClick(transaction)}
+            >
+              {transaction.message}
+            </div>
+          ))}
+        </div>
+
+        <Modal show={!!selectedTransaction} onClose={closeModal}>
+          <h2 className="text-2xl font-bold mb-4">Transaction Details</h2>
+          {transactionDetails ? (
+            <div>
+              {/* Display transaction details here */}
+              <p>Transaction Hash: {transactionDetails.hash}</p>
+              <p>
+                Transaction amount in BTC:{" "}
+                {transactionDetails.total * 0.00000001}
+              </p>
+              {/* <p>Transaction input: {transactionDetails.inputs}</p> */}
+            </div>
+          ) : (
+            <p>Loading transaction details...</p>
+          )}
+        </Modal>
+      </main>
+    </div>
+  );
+};
+
+export default Home;
